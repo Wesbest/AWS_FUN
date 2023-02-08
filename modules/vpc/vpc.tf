@@ -9,11 +9,14 @@ resource "aws_vpc" "main" {
   enable_dns_support = true
 }
 
+data "aws_availability_zones" "available" {}
+
 resource "aws_subnet" "main" {
-  for_each = var.subnets
+  count = "${length(data.aws_availability_zones.available.names)}"
   vpc_id = aws_vpc.main.id
-  cidr_block = "${each.value}"
+  cidr_block = "10.0.${20+count.index}.0/24"
+  availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
   tags = {
-    name = "${each.key}"
+    name = "PublicSubnet"
   }
 }
