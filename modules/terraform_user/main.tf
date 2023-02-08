@@ -5,7 +5,7 @@ resource "aws_iam_user" "user" {
 data "aws_iam_policy_document" "terraform_policy" {
   statement {
     effect = "Allow"
-    actions = ["sts:AssumeRole"]
+    actions = ["sts:*"]
     principals {
       type = "AWS"
       identifiers = ["${aws_iam_user.user.arn}"]

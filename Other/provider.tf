@@ -12,4 +12,7 @@ provider "aws" {
   shared_credentials_files = ["~/.aws/credentials"]
   profile                  = "dev"
   region = "eu-west-3"
+  assume_role {
+    role_arn = "arn:aws:iam::257305051220:role/terraform_role"
+  }
 }
