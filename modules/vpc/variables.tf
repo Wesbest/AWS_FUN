@@ -5,3 +5,7 @@ variable "cidr_block" {
 variable "environment" {
   type = string
 }
+
+variable "imageid" {
+  type = string
+}
